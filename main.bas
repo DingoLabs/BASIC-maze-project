@@ -1,6 +1,6 @@
 Screen _NewImage(500, 520, 32)
 
-img& = _LoadImage("/home/dingo/qb64-basic/qb64/projects/mazeproject/tiles6a.png")
+img& = _LoadImage("currentTiles.png")
 _PrintString (100, 0), "WELCOME TO D1NGOS MAZE GAME!!!"
 Print
 Print "*************************************************************"
@@ -32,8 +32,11 @@ Cls
 
 
 Dim array(200) As Integer
+Dim coin(200) As Integer
 Dim A As Integer
+Dim C As Integer
 A = 1
+C = 1
 For i = 0 To 520 Step 50
     For j = 20 To 520 Step 50
         x = Int(Rnd * 7)
@@ -58,6 +61,18 @@ For i = 0 To 520 Step 50
             array(A) = 4
         End If
         A = A + 1
+        y = Int(Rnd * 3)
+
+        If y = 0 Then
+            _PutImage (i + 19, j + 18), img&, , (82, 120)-(93, 131) 'coin
+            coin(C) = 0
+        End If
+
+        If y >= 1 Then
+            coin(C) = 1
+        End If
+
+        C = C + 1
     Next
 Next
 _PutImage (0, 19), img&, , (0, 99)-(49, 149)
@@ -70,7 +85,10 @@ _PutImage (PlayerX, PlayerY), img&, , (70, 120)-(81, 131)
 array(1) = 4
 CPos = 1
 NPos = 1
+coinPos = 1
 steps% = 0
+Dim gold As Integer
+gold = 0
 
 Do
     top:
@@ -141,12 +159,23 @@ Do
             CPos = NPos
         End If
     End If
+    coinPos = CPos
+    If coin(coinPos) = 0 Then
+        gold = gold + 1
+        coin(coinPos) = 1
+    End If
     If keypress$ = "S" Then
         Cls
         GoTo start
     End If
+    If keypress$ = "Q" Then
+        System
+    End If
+
     _PrintString (0, 0), "steps: "
-    _PrintString (60, 0), Str$(steps)
+    _PrintString (60, 0), Str$(CPos)
+    _PrintString (100, 0), "gold: "
+    _PrintString (160, 0), Str$(gold)
 Loop
 
 
