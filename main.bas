@@ -1,3 +1,4 @@
+$Resize:Stretch
 Screen _NewImage(500, 520, 32)
 
 img& = _LoadImage("currentTiles.png")
@@ -60,10 +61,10 @@ For i = 0 To 520 Step 50
             _PutImage (i, j), img&, , (0, 100)-(49, 149) 'full
             array(A) = 4
         End If
-        A = A + 1
+
         y = Int(Rnd * 3)
 
-        If y = 0 Then
+        If y = 0 And array(A) <> 1 Then
             _PutImage (i + 19, j + 18), img&, , (82, 120)-(93, 131) 'coin
             coin(C) = 0
         End If
@@ -71,12 +72,14 @@ For i = 0 To 520 Step 50
         If y >= 1 Then
             coin(C) = 1
         End If
-
+        A = A + 1
         C = C + 1
     Next
 Next
 _PutImage (0, 19), img&, , (0, 99)-(49, 149)
 '_PutImage (450, 470), img&, , (0, 100)-(49, 149)
+
+
 
 PlayerX = 19
 PlayerY = 38
@@ -177,5 +180,4 @@ Do
     _PrintString (100, 0), "gold: "
     _PrintString (160, 0), Str$(gold)
 Loop
-
 
