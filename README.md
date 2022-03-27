@@ -1,6 +1,6 @@
 QB64 maze project
 
-![](Capture.jpg)
+![](Capture.JPG)
 
 code challenge on BASIC discord
 
