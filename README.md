@@ -1,4 +1,4 @@
-QB64 maze project
+# QB64 maze project
 
 ![](Capture.JPG)
 
@@ -13,13 +13,13 @@ my project is built in QB64.
 
 randomly generated or seed based maze creation
 
-step counter 
+- step counter 
 
-gold counter
+- gold counter
 
 
 # content to add: 
 
-win condition 
+- win condition 
 
-enemies
+- enemies
