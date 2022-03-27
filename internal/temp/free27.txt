@@ -1,5 +1,0 @@
-if(oldstr2928){
-if(oldstr2928->fixed)qbs_set(oldstr2928,_FUNC_ISOPERATOR_STRING_A2);
-qbs_free(_FUNC_ISOPERATOR_STRING_A2);
-}
-qbs_free(_FUNC_ISOPERATOR_STRING_A);
