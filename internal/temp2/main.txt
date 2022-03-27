@@ -1,0 +1,617 @@
+S_0:;
+do{
+qbg_screen(func__newimage( 500 , 520 , 32 ,1),NULL,NULL,NULL,NULL,1);
+if(!qbevent)break;evnt(1);}while(r);
+do{
+*__LONG_IMG=func__loadimage(qbs_new_txt_len("currentTiles.png",16),NULL,0);
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(3);}while(r);
+do{
+sub__printstring( 100 , 0 ,qbs_new_txt_len("WELCOME TO D1NGOS MAZE GAME!!!",30),NULL,0);
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(4);}while(r);
+do{
+tqbs=qbs_new(0,0);
+qbs_print(nothingstring,1);
+skip1:
+qbs_free(tqbs);
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(5);}while(r);
+do{
+tqbs=qbs_new(0,0);
+qbs_set(tqbs,qbs_new_txt_len("*************************************************************",61));
+if (new_error) goto skip2;
+makefit(tqbs);
+qbs_print(tqbs,0);
+qbs_print(nothingstring,1);
+skip2:
+qbs_free(tqbs);
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(6);}while(r);
+do{
+tqbs=qbs_new(0,0);
+qbs_set(tqbs,qbs_new_txt_len(" type 's' during the game to start over",39));
+if (new_error) goto skip3;
+makefit(tqbs);
+qbs_print(tqbs,0);
+qbs_print(nothingstring,1);
+skip3:
+qbs_free(tqbs);
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(7);}while(r);
+do{
+tqbs=qbs_new(0,0);
+qbs_set(tqbs,qbs_new_txt_len(" ",1));
+if (new_error) goto skip4;
+makefit(tqbs);
+qbs_print(tqbs,0);
+qbs_print(nothingstring,1);
+skip4:
+qbs_free(tqbs);
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(8);}while(r);
+LABEL_START:;
+if(qbevent){evnt(11);r=0;}
+do{
+qbs_print(qbs_new_txt_len("do you want a random seed or to pick? (random / pick) ",54),0);
+qbs_input_variabletypes[1]=ISSTRING;
+qbs_input_variableoffsets[1]=__STRING_ANSWER;
+qbs_input(1,1);
+if (stop_program) end();
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(12);}while(r);
+S_9:;
+if ((qbs_cleanup(qbs_tmp_base,qbs_equal(__STRING_ANSWER,qbs_new_txt_len("random",6))))||new_error){
+if(qbevent){evnt(13);if(r)goto S_9;}
+do{
+*__SINGLE_TIME=func_timer(NULL,0)/  4 ;
+if(!qbevent)break;evnt(14);}while(r);
+do{
+*__SINGLE_TIME=func_round_double(*__SINGLE_TIME);
+if(!qbevent)break;evnt(15);}while(r);
+do{
+sub_randomize(*__SINGLE_TIME,1);
+if(!qbevent)break;evnt(16);}while(r);
+do{
+tqbs=qbs_new(0,0);
+qbs_set(tqbs,qbs_new_txt_len("your seed number is ",20));
+if (new_error) goto skip5;
+makefit(tqbs);
+qbs_print(tqbs,0);
+tab();
+qbs_set(tqbs,qbs_add(qbs_str((float)(*__SINGLE_TIME)),qbs_new_txt(" ")));
+if (new_error) goto skip5;
+makefit(tqbs);
+qbs_print(tqbs,0);
+qbs_print(nothingstring,1);
+skip5:
+qbs_free(tqbs);
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(17);}while(r);
+do{
+sub_sleep(NULL,0);
+if(!qbevent)break;evnt(18);}while(r);
+S_15:;
+}else{
+if (qbs_cleanup(qbs_tmp_base,qbs_equal(__STRING_ANSWER,qbs_new_txt_len("pick",4)))){
+if(qbevent){evnt(20);if(r)goto S_15;}
+do{
+qbs_print(qbs_new_txt_len("enter a seed number (0 - 32767) ",32),0);
+qbs_input_variabletypes[1]=536870944;
+qbs_input_variableoffsets[1]=&(*__SINGLE_SEED);
+qbs_input(1,1);
+if (stop_program) end();
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(21);}while(r);
+do{
+sub_randomize(*__SINGLE_SEED,1);
+if(!qbevent)break;evnt(22);}while(r);
+do{
+tqbs=qbs_new(0,0);
+qbs_set(tqbs,qbs_new_txt_len("generating maze based off seed number: ",39));
+if (new_error) goto skip6;
+makefit(tqbs);
+qbs_print(tqbs,0);
+tab();
+qbs_set(tqbs,qbs_add(qbs_str((float)(*__SINGLE_SEED)),qbs_new_txt(" ")));
+if (new_error) goto skip6;
+makefit(tqbs);
+qbs_print(tqbs,0);
+qbs_print(nothingstring,1);
+skip6:
+qbs_free(tqbs);
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(23);}while(r);
+do{
+sub_sleep(NULL,0);
+if(!qbevent)break;evnt(24);}while(r);
+}else{
+do{
+tqbs=qbs_new(0,0);
+qbs_set(tqbs,__STRING_ANSWER);
+if (new_error) goto skip7;
+makefit(tqbs);
+qbs_print(tqbs,0);
+qbs_set(tqbs,qbs_new_txt_len("not vaild choice",16));
+if (new_error) goto skip7;
+makefit(tqbs);
+qbs_print(tqbs,0);
+qbs_print(nothingstring,1);
+skip7:
+qbs_free(tqbs);
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(26);}while(r);
+do{
+goto LABEL_START;
+if(!qbevent)break;evnt(27);}while(r);
+}
+}
+do{
+sub_cls(NULL,NULL,0);
+if(!qbevent)break;evnt(29);}while(r);
+do{
+
+if(!qbevent)break;evnt(34);}while(r);
+do{
+
+if(!qbevent)break;evnt(35);}while(r);
+do{
+if(!qbevent)break;evnt(36);}while(r);
+do{
+if(!qbevent)break;evnt(37);}while(r);
+do{
+*__INTEGER_A= 1 ;
+if(!qbevent)break;evnt(38);}while(r);
+do{
+*__INTEGER_C= 1 ;
+if(!qbevent)break;evnt(39);}while(r);
+S_31:;
+fornext_value9= 0 ;
+fornext_finalvalue9= 520 ;
+fornext_step9= 50 ;
+if (fornext_step9<0) fornext_step_negative9=1; else fornext_step_negative9=0;
+if (new_error) goto fornext_error9;
+goto fornext_entrylabel9;
+while(1){
+fornext_value9=fornext_step9+(*__SINGLE_I);
+fornext_entrylabel9:
+*__SINGLE_I=fornext_value9;
+if (fornext_step_negative9){
+if (fornext_value9<fornext_finalvalue9) break;
+}else{
+if (fornext_value9>fornext_finalvalue9) break;
+}
+fornext_error9:;
+if(qbevent){evnt(40);if(r)goto S_31;}
+S_32:;
+fornext_value11= 20 ;
+fornext_finalvalue11= 520 ;
+fornext_step11= 50 ;
+if (fornext_step11<0) fornext_step_negative11=1; else fornext_step_negative11=0;
+if (new_error) goto fornext_error11;
+goto fornext_entrylabel11;
+while(1){
+fornext_value11=fornext_step11+(*__SINGLE_J);
+fornext_entrylabel11:
+*__SINGLE_J=fornext_value11;
+if (fornext_step_negative11){
+if (fornext_value11<fornext_finalvalue11) break;
+}else{
+if (fornext_value11>fornext_finalvalue11) break;
+}
+fornext_error11:;
+if(qbevent){evnt(41);if(r)goto S_32;}
+do{
+*__SINGLE_X=floor(func_rnd(NULL,0)* 7 );
+if(!qbevent)break;evnt(42);}while(r);
+S_34:;
+if ((-(*__SINGLE_X== 0 ))||new_error){
+if(qbevent){evnt(43);if(r)goto S_34;}
+do{
+sub__putimage(*__SINGLE_I,*__SINGLE_J,NULL,NULL,*__LONG_IMG,NULL, 0 , 0 , 49 , 49 ,585);
+if(!qbevent)break;evnt(44);}while(r);
+do{
+tmp_long=array_check((*__INTEGER_A)-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5]);
+if (!new_error) ((int16*)(__ARRAY_INTEGER_ARRAY[0]))[tmp_long]= 0 ;
+if(!qbevent)break;evnt(45);}while(r);
+}
+S_38:;
+if ((-(*__SINGLE_X== 1 ))||new_error){
+if(qbevent){evnt(47);if(r)goto S_38;}
+do{
+sub__putimage(*__SINGLE_I,*__SINGLE_J,NULL,NULL,*__LONG_IMG,NULL, 50 , 50 , 99 , 99 ,585);
+if(!qbevent)break;evnt(48);}while(r);
+do{
+tmp_long=array_check((*__INTEGER_A)-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5]);
+if (!new_error) ((int16*)(__ARRAY_INTEGER_ARRAY[0]))[tmp_long]= 1 ;
+if(!qbevent)break;evnt(49);}while(r);
+}
+S_42:;
+if ((-(*__SINGLE_X== 2 ))||new_error){
+if(qbevent){evnt(51);if(r)goto S_42;}
+do{
+sub__putimage(*__SINGLE_I,*__SINGLE_J,NULL,NULL,*__LONG_IMG,NULL, 0 , 50 , 49 , 99 ,585);
+if(!qbevent)break;evnt(52);}while(r);
+do{
+tmp_long=array_check((*__INTEGER_A)-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5]);
+if (!new_error) ((int16*)(__ARRAY_INTEGER_ARRAY[0]))[tmp_long]= 2 ;
+if(!qbevent)break;evnt(53);}while(r);
+}
+S_46:;
+if ((-(*__SINGLE_X== 3 ))||new_error){
+if(qbevent){evnt(55);if(r)goto S_46;}
+do{
+sub__putimage(*__SINGLE_I,*__SINGLE_J,NULL,NULL,*__LONG_IMG,NULL, 50 , 0 , 99 , 49 ,585);
+if(!qbevent)break;evnt(56);}while(r);
+do{
+tmp_long=array_check((*__INTEGER_A)-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5]);
+if (!new_error) ((int16*)(__ARRAY_INTEGER_ARRAY[0]))[tmp_long]= 3 ;
+if(!qbevent)break;evnt(57);}while(r);
+}
+S_50:;
+if ((-(*__SINGLE_X>= 4 ))||new_error){
+if(qbevent){evnt(59);if(r)goto S_50;}
+do{
+sub__putimage(*__SINGLE_I,*__SINGLE_J,NULL,NULL,*__LONG_IMG,NULL, 0 , 100 , 49 , 149 ,585);
+if(!qbevent)break;evnt(60);}while(r);
+do{
+tmp_long=array_check((*__INTEGER_A)-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5]);
+if (!new_error) ((int16*)(__ARRAY_INTEGER_ARRAY[0]))[tmp_long]= 4 ;
+if(!qbevent)break;evnt(61);}while(r);
+}
+do{
+*__INTEGER_A=*__INTEGER_A+ 1 ;
+if(!qbevent)break;evnt(63);}while(r);
+do{
+*__SINGLE_Y=floor(func_rnd(NULL,0)* 3 );
+if(!qbevent)break;evnt(64);}while(r);
+S_56:;
+if ((-(*__SINGLE_Y== 0 ))||new_error){
+if(qbevent){evnt(66);if(r)goto S_56;}
+do{
+sub__putimage(*__SINGLE_I+ 19 ,*__SINGLE_J+ 18 ,NULL,NULL,*__LONG_IMG,NULL, 82 , 120 , 93 , 131 ,585);
+if(!qbevent)break;evnt(67);}while(r);
+do{
+tmp_long=array_check((*__INTEGER_C)-__ARRAY_INTEGER_COIN[4],__ARRAY_INTEGER_COIN[5]);
+if (!new_error) ((int16*)(__ARRAY_INTEGER_COIN[0]))[tmp_long]= 0 ;
+if(!qbevent)break;evnt(68);}while(r);
+}
+S_60:;
+if ((-(*__SINGLE_Y>= 1 ))||new_error){
+if(qbevent){evnt(71);if(r)goto S_60;}
+do{
+tmp_long=array_check((*__INTEGER_C)-__ARRAY_INTEGER_COIN[4],__ARRAY_INTEGER_COIN[5]);
+if (!new_error) ((int16*)(__ARRAY_INTEGER_COIN[0]))[tmp_long]= 1 ;
+if(!qbevent)break;evnt(72);}while(r);
+}
+do{
+*__INTEGER_C=*__INTEGER_C+ 1 ;
+if(!qbevent)break;evnt(75);}while(r);
+fornext_continue_10:;
+}
+fornext_exit_10:;
+fornext_continue_8:;
+}
+fornext_exit_8:;
+do{
+sub__putimage( 0 , 19 ,NULL,NULL,*__LONG_IMG,NULL, 0 , 99 , 49 , 149 ,585);
+if(!qbevent)break;evnt(78);}while(r);
+do{
+*__SINGLE_PLAYERX= 19 ;
+if(!qbevent)break;evnt(81);}while(r);
+do{
+*__SINGLE_PLAYERY= 38 ;
+if(!qbevent)break;evnt(82);}while(r);
+do{
+sub__putimage(*__SINGLE_PLAYERX,*__SINGLE_PLAYERY,NULL,NULL,*__LONG_IMG,NULL, 70 , 120 , 81 , 131 ,585);
+if(!qbevent)break;evnt(83);}while(r);
+do{
+tmp_long=array_check(( 1 )-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5]);
+if (!new_error) ((int16*)(__ARRAY_INTEGER_ARRAY[0]))[tmp_long]= 4 ;
+if(!qbevent)break;evnt(85);}while(r);
+do{
+*__SINGLE_CPOS= 1 ;
+if(!qbevent)break;evnt(86);}while(r);
+do{
+*__SINGLE_NPOS= 1 ;
+if(!qbevent)break;evnt(87);}while(r);
+do{
+*__SINGLE_COINPOS= 1 ;
+if(!qbevent)break;evnt(88);}while(r);
+do{
+*__INTEGER_STEPS= 0 ;
+if(!qbevent)break;evnt(89);}while(r);
+do{
+if(!qbevent)break;evnt(90);}while(r);
+do{
+*__INTEGER_GOLD= 0 ;
+if(!qbevent)break;evnt(91);}while(r);
+S_77:;
+do{
+if(qbevent){evnt(93);if(r)goto S_77;}
+LABEL_TOP:;
+if(qbevent){evnt(94);r=0;}
+do{
+qbs_set(__STRING_KEYPRESS,qbs_ucase(qbs_inkey()));
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(95);}while(r);
+S_79:;
+if ((qbs_cleanup(qbs_tmp_base,qbs_equal(__STRING_KEYPRESS,(qbs_add(func_chr( 0 ),func_chr( 77 ))))))||new_error){
+if(qbevent){evnt(96);if(r)goto S_79;}
+do{
+*__SINGLE_PLAYERX=*__SINGLE_PLAYERX+ 50 ;
+if(!qbevent)break;evnt(97);}while(r);
+S_81:;
+if ((-(*__SINGLE_PLAYERX> 500 ))||new_error){
+if(qbevent){evnt(98);if(r)goto S_81;}
+do{
+*__SINGLE_PLAYERX=*__SINGLE_PLAYERX- 50 ;
+if(!qbevent)break;evnt(99);}while(r);
+do{
+goto LABEL_TOP;
+if(!qbevent)break;evnt(100);}while(r);
+}
+do{
+*__SINGLE_PLAYERX=*__SINGLE_PLAYERX- 50 ;
+if(!qbevent)break;evnt(102);}while(r);
+do{
+*__SINGLE_NPOS=*__SINGLE_CPOS+ 11 ;
+if(!qbevent)break;evnt(103);}while(r);
+S_87:;
+if ((-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_CPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 0 ))||new_error){
+if(qbevent){evnt(104);if(r)goto S_87;}
+do{
+goto LABEL_TOP;
+if(!qbevent)break;evnt(104);}while(r);
+}
+S_90:;
+if (((-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_NPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 2 ))|(-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_NPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 3 ))|(-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_NPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 4 )))||new_error){
+if(qbevent){evnt(105);if(r)goto S_90;}
+do{
+sub__putimage(*__SINGLE_PLAYERX,*__SINGLE_PLAYERY,NULL,NULL,*__LONG_IMG,NULL, 20 , 120 , 31 , 131 ,585);
+if(!qbevent)break;evnt(106);}while(r);
+do{
+*__SINGLE_PLAYERX=*__SINGLE_PLAYERX+ 50 ;
+if(!qbevent)break;evnt(107);}while(r);
+do{
+sub__putimage(*__SINGLE_PLAYERX,*__SINGLE_PLAYERY,NULL,NULL,*__LONG_IMG,NULL, 70 , 120 , 81 , 131 ,585);
+if(!qbevent)break;evnt(108);}while(r);
+do{
+*__SINGLE_STEPS=*__SINGLE_STEPS+ 1 ;
+if(!qbevent)break;evnt(109);}while(r);
+do{
+*__SINGLE_CPOS=*__SINGLE_NPOS;
+if(!qbevent)break;evnt(110);}while(r);
+}
+S_97:;
+}else{
+if (qbs_cleanup(qbs_tmp_base,qbs_equal(__STRING_KEYPRESS,(qbs_add(func_chr( 0 ),func_chr( 80 )))))){
+if(qbevent){evnt(112);if(r)goto S_97;}
+do{
+*__SINGLE_PLAYERY=*__SINGLE_PLAYERY+ 50 ;
+if(!qbevent)break;evnt(113);}while(r);
+S_99:;
+if ((-(*__SINGLE_PLAYERY> 520 ))||new_error){
+if(qbevent){evnt(114);if(r)goto S_99;}
+do{
+*__SINGLE_PLAYERY=*__SINGLE_PLAYERY- 50 ;
+if(!qbevent)break;evnt(115);}while(r);
+do{
+goto LABEL_TOP;
+if(!qbevent)break;evnt(116);}while(r);
+}
+do{
+*__SINGLE_PLAYERY=*__SINGLE_PLAYERY- 50 ;
+if(!qbevent)break;evnt(118);}while(r);
+do{
+*__SINGLE_NPOS=*__SINGLE_CPOS+ 1 ;
+if(!qbevent)break;evnt(119);}while(r);
+S_105:;
+if ((-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_CPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 2 ))||new_error){
+if(qbevent){evnt(120);if(r)goto S_105;}
+do{
+goto LABEL_TOP;
+if(!qbevent)break;evnt(120);}while(r);
+}
+S_108:;
+if (((-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_NPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 0 ))|(-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_NPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 3 ))|(-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_NPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 4 )))||new_error){
+if(qbevent){evnt(121);if(r)goto S_108;}
+do{
+sub__putimage(*__SINGLE_PLAYERX,*__SINGLE_PLAYERY,NULL,NULL,*__LONG_IMG,NULL, 20 , 120 , 31 , 131 ,585);
+if(!qbevent)break;evnt(122);}while(r);
+do{
+*__SINGLE_PLAYERY=*__SINGLE_PLAYERY+ 50 ;
+if(!qbevent)break;evnt(123);}while(r);
+S_111:;
+if ((-(*__SINGLE_PLAYERY> 520 ))||new_error){
+if(qbevent){evnt(124);if(r)goto S_111;}
+do{
+goto LABEL_TOP;
+if(!qbevent)break;evnt(124);}while(r);
+}
+do{
+sub__putimage(*__SINGLE_PLAYERX,*__SINGLE_PLAYERY,NULL,NULL,*__LONG_IMG,NULL, 70 , 120 , 81 , 131 ,585);
+if(!qbevent)break;evnt(125);}while(r);
+do{
+*__SINGLE_STEPS=*__SINGLE_STEPS+ 1 ;
+if(!qbevent)break;evnt(126);}while(r);
+do{
+*__SINGLE_CPOS=*__SINGLE_NPOS;
+if(!qbevent)break;evnt(127);}while(r);
+}
+S_118:;
+}else{
+if (qbs_cleanup(qbs_tmp_base,qbs_equal(__STRING_KEYPRESS,(qbs_add(func_chr( 0 ),func_chr( 72 )))))){
+if(qbevent){evnt(129);if(r)goto S_118;}
+do{
+*__SINGLE_PLAYERY=*__SINGLE_PLAYERY- 50 ;
+if(!qbevent)break;evnt(130);}while(r);
+S_120:;
+if ((-(*__SINGLE_PLAYERY< 0 ))||new_error){
+if(qbevent){evnt(131);if(r)goto S_120;}
+do{
+*__SINGLE_PLAYERY=*__SINGLE_PLAYERY+ 50 ;
+if(!qbevent)break;evnt(132);}while(r);
+do{
+goto LABEL_TOP;
+if(!qbevent)break;evnt(133);}while(r);
+}
+do{
+*__SINGLE_PLAYERY=*__SINGLE_PLAYERY+ 50 ;
+if(!qbevent)break;evnt(135);}while(r);
+do{
+*__SINGLE_NPOS=*__SINGLE_CPOS- 1 ;
+if(!qbevent)break;evnt(136);}while(r);
+S_126:;
+if ((-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_CPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 2 ))||new_error){
+if(qbevent){evnt(137);if(r)goto S_126;}
+do{
+goto LABEL_TOP;
+if(!qbevent)break;evnt(137);}while(r);
+}
+S_129:;
+if (((-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_NPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 0 ))|(-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_NPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 3 ))|(-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_NPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 4 )))||new_error){
+if(qbevent){evnt(138);if(r)goto S_129;}
+do{
+sub__putimage(*__SINGLE_PLAYERX,*__SINGLE_PLAYERY,NULL,NULL,*__LONG_IMG,NULL, 20 , 120 , 31 , 131 ,585);
+if(!qbevent)break;evnt(139);}while(r);
+do{
+*__SINGLE_PLAYERY=*__SINGLE_PLAYERY- 50 ;
+if(!qbevent)break;evnt(140);}while(r);
+do{
+sub__putimage(*__SINGLE_PLAYERX,*__SINGLE_PLAYERY,NULL,NULL,*__LONG_IMG,NULL, 70 , 120 , 81 , 131 ,585);
+if(!qbevent)break;evnt(141);}while(r);
+do{
+*__SINGLE_STEPS=*__SINGLE_STEPS+ 1 ;
+if(!qbevent)break;evnt(142);}while(r);
+do{
+*__SINGLE_CPOS=*__SINGLE_NPOS;
+if(!qbevent)break;evnt(143);}while(r);
+}
+S_136:;
+}else{
+if (qbs_cleanup(qbs_tmp_base,qbs_equal(__STRING_KEYPRESS,(qbs_add(func_chr( 0 ),func_chr( 75 )))))){
+if(qbevent){evnt(145);if(r)goto S_136;}
+do{
+*__SINGLE_PLAYERX=*__SINGLE_PLAYERX- 50 ;
+if(!qbevent)break;evnt(146);}while(r);
+S_138:;
+if ((-(*__SINGLE_PLAYERX< 0 ))||new_error){
+if(qbevent){evnt(147);if(r)goto S_138;}
+do{
+*__SINGLE_PLAYERX=*__SINGLE_PLAYERX+ 50 ;
+if(!qbevent)break;evnt(148);}while(r);
+do{
+goto LABEL_TOP;
+if(!qbevent)break;evnt(149);}while(r);
+}
+do{
+*__SINGLE_PLAYERX=*__SINGLE_PLAYERX+ 50 ;
+if(!qbevent)break;evnt(151);}while(r);
+do{
+*__SINGLE_NPOS=*__SINGLE_CPOS- 11 ;
+if(!qbevent)break;evnt(152);}while(r);
+S_144:;
+if ((-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_CPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 0 ))||new_error){
+if(qbevent){evnt(153);if(r)goto S_144;}
+do{
+goto LABEL_TOP;
+if(!qbevent)break;evnt(153);}while(r);
+}
+S_147:;
+if (((-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_NPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 2 ))|(-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_NPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 3 ))|(-(((int16*)(__ARRAY_INTEGER_ARRAY[0]))[array_check((qbr(*__SINGLE_NPOS))-__ARRAY_INTEGER_ARRAY[4],__ARRAY_INTEGER_ARRAY[5])]== 4 )))||new_error){
+if(qbevent){evnt(154);if(r)goto S_147;}
+do{
+sub__putimage(*__SINGLE_PLAYERX,*__SINGLE_PLAYERY,NULL,NULL,*__LONG_IMG,NULL, 20 , 120 , 31 , 131 ,585);
+if(!qbevent)break;evnt(155);}while(r);
+do{
+*__SINGLE_PLAYERX=*__SINGLE_PLAYERX- 50 ;
+if(!qbevent)break;evnt(156);}while(r);
+do{
+sub__putimage(*__SINGLE_PLAYERX,*__SINGLE_PLAYERY,NULL,NULL,*__LONG_IMG,NULL, 70 , 120 , 81 , 131 ,585);
+if(!qbevent)break;evnt(157);}while(r);
+do{
+*__SINGLE_STEPS=*__SINGLE_STEPS+ 1 ;
+if(!qbevent)break;evnt(158);}while(r);
+do{
+*__SINGLE_CPOS=*__SINGLE_NPOS;
+if(!qbevent)break;evnt(159);}while(r);
+}
+}
+}
+}
+}
+do{
+*__SINGLE_COINPOS=*__SINGLE_CPOS;
+if(!qbevent)break;evnt(162);}while(r);
+S_156:;
+if ((-(((int16*)(__ARRAY_INTEGER_COIN[0]))[array_check((qbr(*__SINGLE_COINPOS))-__ARRAY_INTEGER_COIN[4],__ARRAY_INTEGER_COIN[5])]== 0 ))||new_error){
+if(qbevent){evnt(163);if(r)goto S_156;}
+do{
+*__INTEGER_GOLD=*__INTEGER_GOLD+ 1 ;
+if(!qbevent)break;evnt(164);}while(r);
+do{
+tmp_long=array_check((qbr(*__SINGLE_COINPOS))-__ARRAY_INTEGER_COIN[4],__ARRAY_INTEGER_COIN[5]);
+if (!new_error) ((int16*)(__ARRAY_INTEGER_COIN[0]))[tmp_long]= 1 ;
+if(!qbevent)break;evnt(165);}while(r);
+}
+S_160:;
+if ((qbs_cleanup(qbs_tmp_base,qbs_equal(__STRING_KEYPRESS,qbs_new_txt_len("S",1))))||new_error){
+if(qbevent){evnt(167);if(r)goto S_160;}
+do{
+sub_cls(NULL,NULL,0);
+if(!qbevent)break;evnt(168);}while(r);
+do{
+goto LABEL_START;
+if(!qbevent)break;evnt(169);}while(r);
+}
+S_164:;
+if ((qbs_cleanup(qbs_tmp_base,qbs_equal(__STRING_KEYPRESS,qbs_new_txt_len("Q",1))))||new_error){
+if(qbevent){evnt(171);if(r)goto S_164;}
+do{
+if (sub_gl_called) error(271);
+close_program=1;
+end();
+if(!qbevent)break;evnt(172);}while(r);
+}
+do{
+sub__printstring( 0 , 0 ,qbs_new_txt_len("steps: ",7),NULL,0);
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(175);}while(r);
+do{
+sub__printstring( 60 , 0 ,qbs_str((float)(*__SINGLE_CPOS)),NULL,0);
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(176);}while(r);
+do{
+sub__printstring( 100 , 0 ,qbs_new_txt_len("gold: ",6),NULL,0);
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(177);}while(r);
+do{
+sub__printstring( 160 , 0 ,qbs_str((int16)(*__INTEGER_GOLD)),NULL,0);
+qbs_cleanup(qbs_tmp_base,0);
+if(!qbevent)break;evnt(178);}while(r);
+dl_continue_12:;
+}while(1);
+dl_exit_12:;
+sub_end();
+return;
+}
+void SUB_VWATCH(){
+qbs *tqbs;
+ptrszint tmp_long;
+int32 tmp_fileno;
+uint32 qbs_tmp_base=qbs_tmp_list_nexti;
+uint8 *tmp_mem_static_pointer=mem_static_pointer;
+uint32 tmp_cmem_sp=cmem_sp;
+#include "data1.txt"
+mem_lock *sf_mem_lock;
+new_mem_lock();
+sf_mem_lock=mem_lock_tmp;
+sf_mem_lock->type=3;
+if (new_error) goto exit_subfunc;
+exit_subfunc:;
+free_mem_lock(sf_mem_lock);
+#include "free1.txt"
+if ((tmp_mem_static_pointer>=mem_static)&&(tmp_mem_static_pointer<=mem_static_limit)) mem_static_pointer=tmp_mem_static_pointer; else mem_static_pointer=mem_static;
+cmem_sp=tmp_cmem_sp;
+}

@@ -1,0 +1,2 @@
+qbs_free(__STRING_ANSWER);
+qbs_free(__STRING_KEYPRESS);
