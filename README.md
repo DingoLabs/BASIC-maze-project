@@ -1,5 +1,7 @@
 QB64 maze project
 
+![](Capture.jpg)
+
 code challenge on BASIC discord
 
 challenge: rougelike with maze elements starts: 03/11/2022 ends: 03/25/2022
